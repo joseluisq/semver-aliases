@@ -12,13 +12,14 @@ For example this library can be used to create Semver and custom aliases for [ta
 package main
 
 import (
-    "fmt"
-    aliases "github.com/joseluisq/semver-aliases"
+	"fmt"
+
+	aliases "github.com/joseluisq/semver-aliases"
 )
 
 func main() {
 	// 1. Create alias names based on a given release
-	versionAliases := FromVersion("v1.0.0")
+	versionAliases := aliases.FromVersion("v1.0.0")
 	fmt.Printf("%#v\n", versionAliases)
 	//	[]string{"1", "1.0", "1.0.0"}
 
@@ -28,18 +29,26 @@ func main() {
 	//	[]string{"1", "1.0", "1.0.0", "latest", "stable", "v1.0.0", "1.0"}
 
 	// 2. Or create alias names based on a list of names (deduplicated and sorted)
-	tags := FromVersionNames(composed)
+	tags := aliases.FromVersionNames(composed)
 	fmt.Printf("%#v\n", tags)
 	//	[]string{"1", "1.0", "1.0.0", "latest", "stable"}
 
 	// 3. Or create version names with its items suffixed (sorted)
-	suffixed := GetVersionNamesSuffixed(versionAliases, "linux-amd64")
+	suffixed := aliases.GetVersionNamesSuffixed(versionAliases, "linux-amd64")
 	fmt.Printf("%#v\n", suffixed)
 	//	[]string{"1-linux-amd64", "1.0-linux-amd64", "1.0.0-linux-amd64"}
 }
 ```
 
-For more details and examples take a look [aliases_test.go](./aliases_test.go) or the [documentation](https://pkg.go.dev/github.com/joseluisq/semver-aliases).
+## Examples
+
+- [examples/aliases.go](./examples/aliases.go)
+- [Playground code example](https://goplay.tools/snippet/g6zkaBTq60D)
+- Tests examples at [aliases_test.go](./aliases_test.go)
+
+## Documentation
+
+[pkg.go.dev/github.com/joseluisq/semver-aliases](https://pkg.go.dev/github.com/joseluisq/semver-aliases)
 
 ## Contributions
 
