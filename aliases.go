@@ -51,14 +51,57 @@ func FromVersion(version string) []string {
 	return tags
 }
 
-// FromTagNames validates and returns deduplicated tag aliases.
-func FromTagNames(tags []string) []string {
-	if len(tags) == 0 {
+// FromVersionNames validates and returns deduplicated tag aliases.
+func FromVersionNames(names []string) []string {
+	names = filterInputNames(names)
+
+	if len(names) == 0 {
+		return nil
+	}
+
+	sort.Strings(names)
+	j := 0
+	for i := 1; i < len(names); i++ {
+		if names[j] == names[i] {
+			continue
+		}
+		j++
+		names[j] = names[i]
+	}
+
+	return names[:j+1]
+}
+
+// GetVersionNamesSuffixed returns a version names with its items suffixed.
+func GetVersionNamesSuffixed(names []string, suffix string) []string {
+	names = FromVersionNames(names)
+
+	if len(names) == 0 {
+		return nil
+	}
+
+	if suffix == "" {
+		return names
+	}
+
+	sort.Strings(names)
+
+	var strs []string
+	for _, s := range names {
+		strs = append(strs, s+"-"+suffix)
+	}
+
+	return strs
+}
+
+// filterInputNames filters input names like empty values or `v` prefixes
+func filterInputNames(names []string) []string {
+	if len(names) == 0 {
 		return nil
 	}
 
 	var strv []string
-	for _, s := range tags {
+	for _, s := range names {
 		s = strings.TrimSpace(s)
 		// skip empty values
 		if s != "" {
@@ -68,19 +111,5 @@ func FromTagNames(tags []string) []string {
 		}
 	}
 
-	if len(strv) == 0 {
-		return nil
-	}
-
-	sort.Strings(strv)
-	j := 0
-	for i := 1; i < len(strv); i++ {
-		if strv[j] == strv[i] {
-			continue
-		}
-		j++
-		strv[j] = strv[i]
-	}
-
-	return strv[:j+1]
+	return strv
 }
