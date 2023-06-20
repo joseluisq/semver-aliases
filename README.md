@@ -1,10 +1,10 @@
-# semver-aliases [![Build Status](https://travis-ci.com/joseluisq/semver-aliases.svg?branch=master)](https://travis-ci.com/joseluisq/semver-aliases) [![codecov](https://codecov.io/gh/joseluisq/semver-aliases/branch/master/graph/badge.svg)](https://codecov.io/gh/joseluisq/semver-aliases) [![Go Report Card](https://goreportcard.com/badge/github.com/joseluisq/semver-aliases)](https://goreportcard.com/report/github.com/joseluisq/semver-aliases) [![GoDoc](https://godoc.org/github.com/joseluisq/semver-aliases?status.svg)](https://pkg.go.dev/github.com/joseluisq/semver-aliases)
+# Go SemVer Aliases [![devel](https://github.com/joseluisq/semver-aliases/actions/workflows/devel.yml/badge.svg)](https://github.com/joseluisq/semver-aliases/actions/workflows/devel.yml) [![codecov](https://codecov.io/gh/joseluisq/semver-aliases/branch/master/graph/badge.svg)](https://codecov.io/gh/joseluisq/semver-aliases) [![Go Report Card](https://goreportcard.com/badge/github.com/joseluisq/semver-aliases)](https://goreportcard.com/report/github.com/joseluisq/semver-aliases) [![GoDoc](https://godoc.org/github.com/joseluisq/semver-aliases?status.svg)](https://pkg.go.dev/github.com/joseluisq/semver-aliases)
 
-> Create deduplicated version aliases based on valid [Semver](https://semver.org/) release names.
+> A simple Go package to create deduplicated version aliases based on valid [SemVer](https://semver.org/) release names.
 
 The library takes care of optional prefixed releases (`v`) as well as all version names are *deduplicated* and *sorted* in lexicographic order.
 
-For example this library can be used to create Semver and custom aliases for [tagging Docker images](https://docs.docker.com/engine/reference/commandline/tag/).
+For example this library can be used to create SemVer and custom aliases for [tagging Docker images](https://docs.docker.com/engine/reference/commandline/tag/).
 
 ## Usage
 
